@@ -104,7 +104,3 @@ The delete command can delete files or folders from your cloud file storage. Del
 ```bash
 $ storage --storage=awss3 delete /base_container/targetdir
 ```
-
-Finally, if you have set the storage variable to box, you can omit the `--storage=box` from your command line calls. 
-
-:o: openapi
