@@ -48,12 +48,13 @@ $ storage --storage=awss3 list ''
 
 ### Storage functions overview
 
-### Get
 
-To download a file from awss3 with  Cloudmesh, you must specify the cloud folder or file to be downloaded and the local folder to download to. To download all the contents of a folder, simply specify a folder on the cloud and use the recursive option. 
+### Create a directory
+
+To create a new directory, you must specify the path of the new directory you would like to create, including its parent directory. 
 
 ```bash
-$ storage --storage=awss3 get /created_dir123/stest.txt ~/.cloudmesh/storage/stest/testget.txt --recursive
+$ storage --storage=awss3 create dir /base_container/targetdir
 ```
 
 ### Put
@@ -61,7 +62,15 @@ $ storage --storage=awss3 get /created_dir123/stest.txt ~/.cloudmesh/storage/ste
 The put command uploads files from your local host to the cloud. If you specify a file as the source, the file will be uploaded if no such file exists on the cloud or updated if a copy already exists on the cloud. If the source is a directory and recursive is specified, Cloudmesh will upload all the contents of the source directory to the cloud. 
 
 ```bash
-$ storage --storage=box put ~/test_folder /uploads --recursive
+$ storage --storage=awss3 put ~/.cloudmesh/storage/stest /base_container/targetdir --recursive
+```
+
+### Get
+
+To download a file from awss3 with  Cloudmesh, you must specify the cloud folder or file to be downloaded and the local folder to download to. To download all the contents of a folder, simply specify a folder on the cloud and use the recursive option. 
+
+```bash
+$ storage --storage=awss3 get /base_container/targetdir/stest.txt ~/.cloudmesh/storage/stest/testget.txt --recursive
 ```
 
 ### Search
@@ -69,7 +78,7 @@ $ storage --storage=box put ~/test_folder /uploads --recursive
 To search for a file through Cloudmesh, you must specify a directory in which to search and the file or folder name you are searching for. If recursive is specified, Cloudmesh will search all child directories of the original directory. 
 
 ```bash
-$ storage --storage=box search /uploads last_upload.txt --recursive
+$ storage --storage=awss3 search /base_container/targetdir testget.txt --recursive
 ```
 
 ### List
@@ -77,7 +86,7 @@ $ storage --storage=box search /uploads last_upload.txt --recursive
 The list command lists all the contents of a cloud directory. If recursive is specified, it will list the contents of all child directories as well. 
 
 ```bash
-$ storage --storage=box list /uploads --recursive
+$ storage --storage=awss3 list /base_container/targetdir --recursive
 ```
 
 ### Create a directory
@@ -85,7 +94,7 @@ $ storage --storage=box list /uploads --recursive
 To create a new directory, you must specify the path of the new directory you would like to create, including its parent directory. 
 
 ```bash
-$ storage --storage=box create dir /test_folder/new_folder
+$ storage --storage=awss3 create dir /base_container/targetdir
 ```
 
 ### Delete
@@ -93,7 +102,7 @@ $ storage --storage=box create dir /test_folder/new_folder
 The delete command can delete files or folders from your cloud file storage. Deleting a folder will delete its contents as well. 
 
 ```bash
-$ storage --storage=box delete /uploads/last_upload.txt
+$ storage --storage=awss3 delete /base_container/targetdir
 ```
 
 Finally, if you have set the storage variable to box, you can omit the `--storage=box` from your command line calls. 
