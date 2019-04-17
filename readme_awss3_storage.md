@@ -34,16 +34,26 @@ storage:
 The Cloudmesh command line library offers six functions under storage command: get, put, search, list, create directory, and delete. 
 Once you have installed Cloudmesh, type `cms` into the command line to start the shell. 
 
+To view the docopt for storage command, type in 
+
 ```bash
-$ storage --storage=box 
+$ help storage 
 ```
+
+Gives a detail level understanding of what each command does and how to used the command line to interact with differnt storage providers. For eg to invoke AWS S3 service, we need to pass awss3 as parameter to storage and suffix with the function call with the function parameters.
+
+```bash
+$ storage --storage=awss3 list ''
+```
+
+### Storage functions overview
 
 ### Get
 
-To download a file from Box with Cloudmesh, you must specify the cloud folder or file to be downloaded and the local folder to download to. To download all the contents of a folder, simply specify a folder on the cloud and use the recursive option. 
+To download a file from awss3 with  Cloudmesh, you must specify the cloud folder or file to be downloaded and the local folder to download to. To download all the contents of a folder, simply specify a folder on the cloud and use the recursive option. 
 
 ```bash
-$ storage --storage=box get /test_folder/test_file.txt ~/test_folder --recursive
+$ storage --storage=awss3 get /created_dir123/stest.txt ~/.cloudmesh/storage/stest/testget.txt --recursive
 ```
 
 ### Put
